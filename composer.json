@@ -15,12 +15,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Vendor\\Package\\": "src/"
+            "CultuurNet\\SilexAMQP\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Vendor\\Package\\": "tests/"
+            "CultuurNet\\SilexAMQP\\": "tests/"
         }
     },
     "minimum-stability": "dev",
