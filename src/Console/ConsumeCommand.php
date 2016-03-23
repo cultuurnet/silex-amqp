@@ -38,7 +38,9 @@ class ConsumeCommand extends Command
 
     public function withHeartBeat($heartBeatServiceName)
     {
-        $this->heartBeatServiceName = $heartBeatServiceName;
+        $c = clone $this;
+        $c->heartBeatServiceName = $heartBeatServiceName;
+        return $c;
     }
 
     private function handleSignal(OutputInterface $output, $signal)
