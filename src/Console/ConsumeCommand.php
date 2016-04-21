@@ -1,12 +1,10 @@
 <?php
-/**
- * @file
- */
 
 namespace CultuurNet\SilexAMQP\Console;
 
+use CultuurNet\BroadwayAMQP\EventBusForwardingConsumer;
 use Knp\Command\Command;
-use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,7 +16,7 @@ class ConsumeCommand extends Command
     /**
      * @var string
      */
-    private $amqpConnectionServiceName;
+    private $consumerName;
 
     /**
      * @var string
@@ -27,13 +25,13 @@ class ConsumeCommand extends Command
 
     /**
      * @param string $name
-     * @param $amqpConnectionServiceName
+     * @param string $consumerName
      */
-    public function __construct($name, $amqpConnectionServiceName)
+    public function __construct($name, $consumerName)
     {
         parent::__construct($name);
 
-        $this->amqpConnectionServiceName = $amqpConnectionServiceName;
+        $this->consumerName = $consumerName;
     }
 
     public function withHeartBeat($heartBeatServiceName)
@@ -65,12 +63,10 @@ class ConsumeCommand extends Command
         $this->registerSignalHandlers($output);
 
         $output->writeln('Connecting...');
-        $connection = $this->getAMQPConnection();
+        $channel = $this->getChannel();
         $output->writeln('Connected. Listening for incoming messages...');
 
         $heartBeat = $this->getHeartBeat();
-
-        $channel = $connection->channel(1);
 
         while (count($channel->callbacks) > 0) {
             if ($heartBeat) {
@@ -88,21 +84,23 @@ class ConsumeCommand extends Command
     }
 
     /**
-     * @return AMQPStreamConnection
+     * @return AMQPChannel
      */
-    protected function getAMQPConnection()
+    protected function getChannel()
     {
         $app = $this->getSilexApplication();
 
-        $connection = $app[$this->amqpConnectionServiceName];
+        /** @var EventBusForwardingConsumer $consumer */
+        $consumer = $app[$this->consumerName];
+        $channel = $consumer->getChannel();
 
-        if (!$connection instanceof AMQPStreamConnection) {
+        if (!$channel instanceof AMQPChannel) {
             throw new RuntimeException(
-                'The AMQP connection service is not of the expected type AMQPStreamConnection'
+                'The consumer channel is not of the expected type AMQPChannel'
             );
         }
 
-        return $connection;
+        return $channel;
     }
 
     /**
