@@ -1,6 +1,6 @@
 <?php
 
-namespace CultuurNet\UDB3\Silex\AMQP;
+namespace CultuurNet\SilexAMQP;
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Silex\Application;

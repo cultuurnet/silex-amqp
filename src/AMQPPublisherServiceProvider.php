@@ -1,6 +1,6 @@
 <?php
 
-namespace CultuurNet\UDB3\Silex\AMQP;
+namespace CultuurNet\SilexAMQP;
 
 use CultuurNet\BroadwayAMQP\AMQPPublisher;
 use CultuurNet\BroadwayAMQP\DomainMessage\AnyOf;
