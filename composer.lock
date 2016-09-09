@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "921abaa6173212342e00ab49a7abac6b",
-    "content-hash": "7850b86324d2b6ae23b476e2b2dae69f",
+    "hash": "9e6c399e2765647628757404d6d549e3",
+    "content-hash": "6dbfb69ff16906fff065c69fb104a27a",
     "packages": [
         {
             "name": "2dotstwice/collection",
@@ -265,16 +265,16 @@
         },
         {
             "name": "cultuurnet/broadway-amqp",
-            "version": "dev-feature/III-1262",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cultuurnet/broadway-amqp.git",
-                "reference": "55fb015ab900a81fc588bdc050775124b57f7e5b"
+                "reference": "6b5f9c8c8f6efb301d9a95bfe681a14a1298655e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cultuurnet/broadway-amqp/zipball/55fb015ab900a81fc588bdc050775124b57f7e5b",
-                "reference": "55fb015ab900a81fc588bdc050775124b57f7e5b",
+                "url": "https://api.github.com/repos/cultuurnet/broadway-amqp/zipball/6b5f9c8c8f6efb301d9a95bfe681a14a1298655e",
+                "reference": "6b5f9c8c8f6efb301d9a95bfe681a14a1298655e",
                 "shasum": ""
             },
             "require": {
@@ -308,7 +308,7 @@
                 "Apache-2.0"
             ],
             "description": "AMQP integration for Broadway library",
-            "time": "2016-09-06 14:32:18"
+            "time": "2016-09-09 11:39:09"
         },
         {
             "name": "cultuurnet/deserializer",
@@ -1911,6 +1911,7 @@
                 "rest",
                 "web service"
             ],
+            "abandoned": "guzzlehttp/guzzle",
             "time": "2014-01-28 22:29:15"
         },
         {
@@ -3347,18 +3348,9 @@
             "time": "2016-08-09 15:02:57"
         }
     ],
-    "aliases": [
-        {
-            "alias": "0.1",
-            "alias_normalized": "0.1.0.0",
-            "version": "dev-feature/III-1262",
-            "package": "cultuurnet/broadway-amqp"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "cultuurnet/broadway-amqp": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
