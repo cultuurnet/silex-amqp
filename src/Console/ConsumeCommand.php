@@ -2,13 +2,12 @@
 
 namespace CultuurNet\SilexAMQP\Console;
 
-use CultuurNet\BroadwayAMQP\EventBusForwardingConsumer;
+use CultuurNet\BroadwayAMQP\ConsumerInterface;
 use Knp\Command\Command;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ConsumeCommand extends Command
@@ -90,7 +89,7 @@ class ConsumeCommand extends Command
     {
         $app = $this->getSilexApplication();
 
-        /** @var EventBusForwardingConsumer $consumer */
+        /** @var ConsumerInterface $consumer */
         $consumer = $app[$this->consumerName];
         $channel = $consumer->getChannel();
 
@@ -111,7 +110,7 @@ class ConsumeCommand extends Command
         $app = $this->getSilexApplication();
 
         $heartBeat = null;
-        
+
         if ($this->heartBeatServiceName) {
             $heartBeat = $app[$this->heartBeatServiceName];
 
